@@ -7,7 +7,7 @@ var nodeIndex = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	nodeSelected = $MainHSplit/LeftContent/NodeTree/Content/Panel
+	nodeSelected = $MainHSplit/LeftContent/Content
 
 func _on_Node_button_down():
 	curType = NodeType.Node
@@ -23,12 +23,11 @@ func _on_Node_button_up():
 		node.set_position(pos)
 		node.name = 'Node_%d' % nodeIndex
 		nodeIndex = nodeIndex + 1
+	
+		var tree = $MainHSplit/LeftContent/Content
+		var item = tree.create_item()
+		item.set_text(0, node.name)
 		
-		var btn = Button.new()
-		btn.text = node.name
-		btn.connect('pressed', $MainHSplit/LeftContent/NodeTree/Content, '_on_tree_button_press', [btn])
-		$MainHSplit/LeftContent/NodeTree/Content.add_child(btn)
-		btn.position = 
 	
 	curType = null
 	pass # Replace with function body.
