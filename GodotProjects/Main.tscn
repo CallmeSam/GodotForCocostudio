@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
-[ext_resource path="res://Content.gd" type="Script" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -83,17 +82,18 @@ icon = ExtResource( 1 )
 margin_top = 212.0
 margin_right = 440.0
 margin_bottom = 600.0
-script = ExtResource( 3 )
 
-[node name="RightContent" type="VSplitContainer" parent="MainHSplit"]
+[node name="Canvas" type="VSplitContainer" parent="MainHSplit"]
 margin_left = 452.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
-[node name="ColorRect" type="ColorRect" parent="MainHSplit/RightContent"]
+[node name="Panel" type="ColorRect" parent="MainHSplit/Canvas"]
 margin_right = 572.0
 margin_bottom = 600.0
 color = Color( 0.239216, 0.215686, 0.215686, 1 )
 [connection signal="button_down" from="MainHSplit/LeftContent/ScrollContainer/Container/Container1/Node" to="." method="_on_Node_button_down"]
 [connection signal="button_up" from="MainHSplit/LeftContent/ScrollContainer/Container/Container1/Node" to="." method="_on_Node_button_up"]
-[connection signal="button_pressed" from="MainHSplit/LeftContent/Content" to="MainHSplit/LeftContent/Content" method="_on_Content_button_pressed"]
+[connection signal="cell_selected" from="MainHSplit/LeftContent/Content" to="." method="_on_Content_cell_selected"]
+[connection signal="item_activated" from="MainHSplit/LeftContent/Content" to="." method="_on_Content_item_activated"]
+[connection signal="item_edited" from="MainHSplit/LeftContent/Content" to="." method="_on_Content_item_edited"]
