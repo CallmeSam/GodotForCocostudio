@@ -1,7 +1,7 @@
 extends Control
 
 onready var tree = $MainHSplit/LeftContent/Content
-onready var panel = $MainHSplit/Canvas/Panel
+onready var panel = $MainHSplit/RightContent/Panel
 enum NodeType {Node, Sprite}
 var nodeIndex = 0
 
@@ -23,11 +23,12 @@ func _on_Node_button_up():
 	
 	var pos = panel.get_local_mouse_position()
 	if panel.get_rect().has_point(pos):
+		var parent = get_node(select.get_metadata(0))
 		var node = ColorRect.new()
 		node.set_size(Vector2(10, 10))
 		node.set_frame_color(Color(1, 1, 1, 1))
-		node.set_position(pos)
-		get_node(select.get_metadata(0)).add_child(node)
+		node.set_position(parent.get_local_mouse_position())
+		parent.add_child(node)
 		node.name = 'Node_%d' % nodeIndex
 		nodeIndex = nodeIndex + 1
 		
